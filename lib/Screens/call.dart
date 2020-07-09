@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterappweb/widget/buttontophome.dart';
 import 'package:flutterappweb/widget/constans.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CallUs extends StatefulWidget {
   @override
@@ -14,6 +16,13 @@ class _CallUsState extends State<CallUs> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: <Widget>[
+          ButtontopHome(),
+        ],
+      ),
       body: ListView(
         children: <Widget>[
           Container(
@@ -67,7 +76,6 @@ class _CallUsState extends State<CallUs> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
               children: <Widget>[
                 Column(
                   children: <Widget>[
@@ -142,6 +150,24 @@ class _CallUsState extends State<CallUs> {
                         ),
                       ),
                     ),
+                    Container(
+                      height: 40,
+                      width: 550,
+                      child: RaisedButton(
+                        focusColor: Colors.orange,
+                        color: Colors.orange,
+                        hoverColor: Colors.black,
+                        onPressed: () {},
+                        child: Center(
+                            child: Text(
+                              "ارسال",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                            )),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                    )
                   ],
                 ),
                 Column(
@@ -200,6 +226,22 @@ class _CallUsState extends State<CallUs> {
                         SizedBox(
                           width: 20,
                         ),
+                        Row(
+                          children: <Widget>[
+                            IconButton(
+                              icon: Icon(FontAwesomeIcons.googlePlusSquare,color: Colors.red,),
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              icon: Icon(FontAwesomeIcons.twitterSquare,color: Colors.teal,),
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              icon: Icon(FontAwesomeIcons.facebookSquare,color: Colors.blue,),
+                              onPressed: () {},
+                            ),
+                          ],
+                        )
                       ],
                     )
                   ],

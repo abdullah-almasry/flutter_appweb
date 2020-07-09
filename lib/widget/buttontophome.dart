@@ -11,7 +11,7 @@ class ButtontopHome extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         FlatButton(
-            hoverColor: Colors.blueAccent,
+            hoverColor: Color(0xFFff9c46),
             onPressed: () {},
             child: Text(
               "EN",

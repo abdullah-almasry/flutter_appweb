@@ -13,8 +13,8 @@ class _AboutState extends State<About> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        elevation: 2,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: <Widget>[
           ButtontopHome(),
         ],

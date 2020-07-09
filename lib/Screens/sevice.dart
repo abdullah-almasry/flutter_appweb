@@ -3,14 +3,21 @@ import 'package:flutterappweb/widget/buttontophome.dart';
 import 'package:flutterappweb/widget/constans.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Service extends StatelessWidget {
+class Service extends StatefulWidget {
+
+  @override
+  _ServiceState createState() => _ServiceState();
+}
+
+class _ServiceState extends State<Service> {
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        elevation: 2,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: <Widget>[
           ButtontopHome(),
         ],
