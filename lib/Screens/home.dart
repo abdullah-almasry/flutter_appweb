@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterappweb/widget/buttontophome.dart';
 import 'package:flutterappweb/widget/constans.dart';
@@ -15,6 +16,21 @@ class model {
 }
 
 class _HomeState extends State<Home> {
+  final databaseReference = Firestore.instance;
+
+  void createRecord() async {
+    await databaseReference.collection("books").document("1").setData({
+      'title': 'Mastering Flutter',
+      'description': 'Programming Guide for Dart'
+    });
+
+    DocumentReference ref = await databaseReference.collection("books").add({
+      'title': 'Flutter in Action',
+      'description': 'Complete Programming Guide to learn Flutter'
+    });
+    print(ref.documentID);
+  }
+
   Color colorwhITE = Colors.yellowAccent;
   bool isSelcted = true;
 
@@ -22,27 +38,32 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(
-//        height: double.infinity,
-//        width: double.infinity,
-//        decoration: BoxDecoration(
-//          gradient: KBackgroundGradient,
-//        ),
-        children: [
-            Image.asset("assets/img/back.jpg",fit: BoxFit.cover,width: size.width,height: size.height,),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: KBackgroundGradient2,
+        ),
+        child:
+//          Image.asset(
+//            "assets/img/back.jpg",
+//            fit: BoxFit.cover,
+//            width: size.width,
+//            height: size.height,
+//          ),
           Container(
             height: size.height,
             width: size.width,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.blue.withOpacity(0.3),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                  offset: Offset(1, 2), // changes position of shadow
-                ),
-              ],
-            ),
+//            decoration: BoxDecoration(
+//              boxShadow: [
+//                BoxShadow(
+//                  color: Colors.blue.withOpacity(0.3),
+//                  spreadRadius: 5,
+//                  blurRadius: 5,
+//                  offset: Offset(1, 2), // changes position of shadow
+//                ),
+//              ],
+//            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -150,7 +171,9 @@ class _HomeState extends State<Home> {
                                 focusColor: Colors.orange,
                                 color: Colors.blue,
                                 hoverColor: Colors.orange,
-                                onPressed: () {},
+                                onPressed: () {
+                                  createRecord();
+                                },
                                 child: Center(
                                     child: Text(
                                   "اقراء اكثر",
@@ -176,8 +199,8 @@ class _HomeState extends State<Home> {
                       Align(
                         alignment: Alignment.bottomRight,
                         child: SizedBox(
-                          height: size.height*0.70,
-                          width: size.width*0.50,
+                          height: size.height * 0.70,
+                          width: size.width * 0.50,
                           child: Carousel(
                             boxFit: BoxFit.contain,
                             autoplay: true,
@@ -191,8 +214,10 @@ class _HomeState extends State<Home> {
                             showIndicator: false,
                             indicatorBgPadding: 7.0,
                             images: [
-                              Carditem("assets/img/backimg.jpg", "الضمان والامان"),
-                              Carditem("assets/img/about-img1.jpg", "نقل الوقود"),
+                              Carditem(
+                                  "assets/img/backimg.jpg", "الضمان والامان"),
+                              Carditem(
+                                  "assets/img/about-img1.jpg", "نقل الوقود"),
                               Carditem("assets/img/img3.jpg", "الضمان والامان"),
                               Carditem("assets/img/img4.jpg", "نقل الوقود"),
                               Carditem("assets/img/img5.jpg", "الضمان والامان"),
@@ -206,7 +231,7 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-        ],
+
       ),
     );
   }

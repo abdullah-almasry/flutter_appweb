@@ -3,15 +3,59 @@ import 'package:flutter/material.dart';
 import 'package:flutterappweb/widget/buttontophome.dart';
 import 'package:flutterappweb/widget/constans.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CallUs extends StatefulWidget {
+
   @override
   _CallUsState createState() => _CallUsState();
 }
 
 class _CallUsState extends State<CallUs> {
-  final _formKey = GlobalKey<FormState>();
+  TextEditingController _textController= TextEditingController();
+String title='';
+String email='';
+String name='';
+String description='';
 
+
+void createRecord() async {
+  final databaseReference = Firestore.instance;
+
+//  await databaseReference.collection("books").document("1").setData({
+//    'title': text,
+//    'description': 'Programming Guide for Dart'
+//  });
+
+  DocumentReference ref = await databaseReference.collection("email").add({
+   'name':name,
+    'title': title,
+    'emil':email,
+    'description': description,
+  });
+  print(ref.documentID);
+}
+void _modalBottomSheetMenu() {
+  showModalBottomSheet(
+      context: context,
+      builder: (builder){
+        return new Container(
+          height: 100.0,
+          color: Colors.transparent, //could change this to Color(0xFF737373),
+          //so you don't have to change MaterialApp canvasColor
+          child: new Container(
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.only(
+                      topLeft: const Radius.circular(10.0),
+                      topRight: const Radius.circular(10.0))),
+              child:  Center(
+                child:  Text("تم الارسال بنجاح"),
+              )),
+        );
+      }
+  );
+}
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -93,6 +137,13 @@ class _CallUsState extends State<CallUs> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: _textController,
+
+                            onChanged: (value){
+                              setState(() {
+                                name=value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: "الاسم"),
                           ),
@@ -110,6 +161,13 @@ class _CallUsState extends State<CallUs> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: _textController,
+
+                            onChanged: (value){
+                              setState(() {
+                                email=value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: "الايميل"),
                           ),
@@ -127,6 +185,13 @@ class _CallUsState extends State<CallUs> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: _textController,
+
+                            onChanged: (value){
+                              setState(() {
+                                title=value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: "العنوان"),
                           ),
@@ -144,6 +209,13 @@ class _CallUsState extends State<CallUs> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: _textController,
+
+                            onChanged: (value){
+                              setState(() {
+                                description=value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: "الرساله"),
                           ),
@@ -154,10 +226,15 @@ class _CallUsState extends State<CallUs> {
                       height: 40,
                       width: 550,
                       child: RaisedButton(
+
                         focusColor: Colors.orange,
                         color: Colors.orange,
                         hoverColor: Colors.black,
-                        onPressed: () {},
+                        onPressed: () {
+                          createRecord();
+                          _textController.clear();
+
+                        _modalBottomSheetMenu();},
                         child: Center(
                             child: Text(
                               "ارسال",

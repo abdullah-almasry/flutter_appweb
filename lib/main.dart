@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'الوقود والطاقة',
+      title: 'title',
       routes: {
         '/about': (context) => About(),
         '/service': (context) => Service(),
@@ -32,6 +32,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+
+
       home: Home(),
     );
   }
