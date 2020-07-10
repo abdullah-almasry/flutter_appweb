@@ -31,6 +31,7 @@ dependencies:
   font_awesome_flutter: ^8.8.1
   carousel_pro: ^1.0.0
   cloud_firestore: "0.13.6"
+  responsive_builder: ^0.2.0+2
 
 dev_dependencies:
   flutter_test:
@@ -51,8 +52,7 @@ flutter:
   assets:
     - assets/img/
     - assets/font/
-    - assets/langs/en-EN.json
-    - assets/langs/ar-AR.json
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

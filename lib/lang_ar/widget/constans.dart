@@ -16,6 +16,7 @@ const KBackgroundGradient = LinearGradient(
 const KBackgroundGradient2 = LinearGradient(
     begin: Alignment.topRight,
     end: Alignment.bottomLeft,
+
     colors: [
 
   Color(0xFFbf4e12),

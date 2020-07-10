@@ -1,28 +1,22 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterappweb/widget/buttontophome.dart';
-import 'package:flutterappweb/widget/constans.dart';
+import 'package:flutterappweb/lang_en/widget/buttontophome.dart';
 
-class Station extends StatefulWidget {
+class StationEN extends StatefulWidget {
   @override
-  _StationState createState() => _StationState();
+  _StationENState createState() => _StationENState();
 }
 
-class _StationState extends State<Station> {
+class _StationENState extends State<StationEN> {
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          actions: <Widget>[
-            ButtontopHome(),
-          ],
-        ),
         body: Container(
           height: size.height,
           width: size.width,
@@ -31,11 +25,38 @@ class _StationState extends State<Station> {
               ),
           child: ListView(
             children: <Widget>[
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  color: Colors.transparent,
+                  height: 80,
+                  child: ListView(
+                    reverse: true,
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      ButtontopHomeEn(),
+                    ],
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 20),
                 child: Center(
                   child: Text(
-                    "محطتنا",
+                    "OUR STATIONS",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                        color: Colors.black),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+                child: Center(
+                  child: Text(
+                    "All plans come with unlimited disk space. Our support can be as quick as 15 minutes to get a response. Sed non\nmauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu.",
+                   textAlign: TextAlign.center,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 28,
@@ -60,23 +81,23 @@ class _StationState extends State<Station> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ImgCard("aya", "assets/img/backimg.jpg",),
+                          child: ImgCard("STATION", "assets/img/backimg.jpg",),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ImgCard("aya", "assets/img/img1.jpg"),
+                          child: ImgCard("STATION", "assets/img/img1.jpg",),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ImgCard("aya", "assets/img/img2.jpg"),
+                          child: ImgCard("STATION", "assets/img/img2.jpg",),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ImgCard("aya", "assets/img/img3.jpg"),
+                          child: ImgCard("STATION", "assets/img/img3.jpg",),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ImgCard("aya", "assets/img/img4.jpg"),
+                          child: ImgCard("PARKING SPACES", "assets/img/img4.jpg",),
                         ),
                       ],
                     )),
@@ -94,33 +115,42 @@ class ImgCard extends StatefulWidget {
 
 
 
-  ImgCard(this.text, this.img,);
 
+  ImgCard(this.text, this.img,);
   @override
   _ImgCardState createState() => _ImgCardState();
 }
 
 class _ImgCardState extends State<ImgCard> {
-  void _modalBottomSheetMenu() {
+
+  void _modalBottomSheetMenu1() {
     showModalBottomSheet(
         context: context,
         builder: (builder){
           return new Container(
-            height: 350.0,
+            height: 380.0,
             color: Colors.transparent, //could change this to Color(0xFF737373),
             //so you don't have to change MaterialApp canvasColor
             child: new Container(
                 decoration: new BoxDecoration(
-                    color: Colors.white,
+
+                    color: Colors.black,
                     borderRadius: new BorderRadius.only(
                         topLeft: const Radius.circular(10.0),
                         topRight: const Radius.circular(10.0))),
                 child:  Center(
-                  child:  Row(
-                    children: <Widget>[
-                      Text("This is a modal sheet"),
-                      Image.asset("")
-                    ],
+                  child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+
+                        Text("Station",style: TextStyle(color: Colors.white),),
+                        Image.asset("assets/img/img3.jpg",fit: BoxFit.cover,height: 200,width: 300,),
+
+
+                      ],
+                    ),
                   ),
                 )),
           );
@@ -133,8 +163,10 @@ class _ImgCardState extends State<ImgCard> {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: ExactAssetImage(widget.img),
+          image: ExactAssetImage(widget.img,),
           fit: BoxFit.fill,
+
+
         )),
         child: ConstrainedBox(
             constraints: BoxConstraints.expand(),
@@ -146,7 +178,7 @@ class _ImgCardState extends State<ImgCard> {
               ),
                 hoverColor: Colors.black.withOpacity(0.3),
                 focusColor: Colors.black,
-                onPressed:(){_modalBottomSheetMenu();},
+                onPressed: (){_modalBottomSheetMenu1();},
                 padding: EdgeInsets.all(0.0),
                 child: Text(widget.text))));
   }

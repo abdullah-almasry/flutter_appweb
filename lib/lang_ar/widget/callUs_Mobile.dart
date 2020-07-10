@@ -1,74 +1,74 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterappweb/widget/buttontophome.dart';
-import 'package:flutterappweb/widget/constans.dart';
+import 'package:flutterappweb/lang_ar/widget/buttontophome.dart';
+import 'package:flutterappweb/lang_ar/widget/constans.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CallUs extends StatefulWidget {
+class CallUsMobile extends StatefulWidget {
 
   @override
-  _CallUsState createState() => _CallUsState();
+  _CallUsMobileState createState() => _CallUsMobileState();
 }
 
-class _CallUsState extends State<CallUs> {
+class _CallUsMobileState extends State<CallUsMobile> {
   TextEditingController _textController= TextEditingController();
-String title='';
-String email='';
-String name='';
-String description='';
+  String title='';
+  String email='';
+  String name='';
+  String description='';
 
 
-void createRecord() async {
-  final databaseReference = Firestore.instance;
+  void createRecord() async {
+    final databaseReference = Firestore.instance;
 
-//  await databaseReference.collection("books").document("1").setData({
-//    'title': text,
-//    'description': 'Programming Guide for Dart'
-//  });
 
-  DocumentReference ref = await databaseReference.collection("email").add({
-   'name':name,
-    'title': title,
-    'emil':email,
-    'description': description,
-  });
-  print(ref.documentID);
-}
-void _modalBottomSheetMenu() {
-  showModalBottomSheet(
-      context: context,
-      builder: (builder){
-        return new Container(
-          height: 100.0,
-          color: Colors.transparent, //could change this to Color(0xFF737373),
-          //so you don't have to change MaterialApp canvasColor
-          child: new Container(
-              decoration: new BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(10.0),
-                      topRight: const Radius.circular(10.0))),
-              child:  Center(
-                child:  Text("تم الارسال بنجاح"),
-              )),
-        );
-      }
-  );
-}
+
+    DocumentReference ref = await databaseReference.collection("email").add({
+      'name':name,
+      'title': title,
+      'emil':email,
+      'description': description,
+    });
+    print(ref.documentID);
+  }
+  void _modalBottomSheetMenu() {
+    showModalBottomSheet(
+        context: context,
+        builder: (builder){
+          return new Container(
+            height: 100.0,
+            color: Colors.transparent, //could change this to Color(0xFF737373),
+            //so you don't have to change MaterialApp canvasColor
+            child: new Container(
+                decoration: new BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: new BorderRadius.only(
+                        topLeft: const Radius.circular(10.0),
+                        topRight: const Radius.circular(10.0))),
+                child:  Center(
+                  child:  Text("تم الارسال بنجاح"),
+                )),
+          );
+        }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: <Widget>[
-          ButtontopHome(),
-        ],
-      ),
       body: ListView(
         children: <Widget>[
+          Container(
+            height: 80,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                ButtontopHome(),
+              ],
+            ),
+          ),
           Container(
             width: double.infinity,
             height: size.height * 0.30,
@@ -118,7 +118,7 @@ void _modalBottomSheetMenu() {
             decoration: BoxDecoration(
               gradient: KBackgroundGradient,
             ),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Column(
@@ -132,8 +132,8 @@ void _modalBottomSheetMenu() {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(8))),
-                        height: size.height * .070,
-                        width: size.width * .40,
+                        height: size.height * .090,
+                        width: size.width * .60,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -156,8 +156,8 @@ void _modalBottomSheetMenu() {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(8))),
-                        height: size.height * .070,
-                        width: size.width * .40,
+                        height: size.height * .090,
+                        width: size.width * .60,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -180,8 +180,8 @@ void _modalBottomSheetMenu() {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(8))),
-                        height: size.height * .070,
-                        width: size.width * .40,
+                        height: size.height * .090,
+                        width: size.width * .60,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -204,11 +204,12 @@ void _modalBottomSheetMenu() {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(8))),
-                        height: size.height * .30,
-                        width: size.width * .40,
+                        height: size.height * .50,
+                        width: size.width * .60,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+
                             controller: _textController,
 
                             onChanged: (value){
@@ -234,7 +235,7 @@ void _modalBottomSheetMenu() {
                           createRecord();
                           _textController.clear();
 
-                        _modalBottomSheetMenu();},
+                          _modalBottomSheetMenu();},
                         child: Center(
                             child: Text(
                               "ارسال",

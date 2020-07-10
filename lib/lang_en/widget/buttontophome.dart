@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterappweb/Screens/about.dart';
 
-class ButtontopHome extends StatelessWidget {
+class ButtontopHomeEn extends StatelessWidget {
   Color yellow = Colors.orange;
 
   @override
@@ -14,50 +13,51 @@ class ButtontopHome extends StatelessWidget {
         FlatButton(
             hoverColor: Color(0xFFff9c46),
             onPressed: () {
+              Navigator.of(context).pushReplacementNamed('/home');
             },
             child: Text(
-              "EN",
+              "ع",
               style: TextStyle(
                 color: yellow,
-                fontSize: 22,
+                fontSize: 26,
               ),
             )),
         FlatButton(
             hoverColor: Colors.blueAccent,
             onPressed: () {
-              Navigator.of(context).pushNamed('/call');
+              Navigator.of(context).pushReplacementNamed('/callEN');
             },
-            child: Text("اتصل بنا",
+            child: Text("Call Us",
                 style: TextStyle(
                     color: yellow, fontSize: 22, fontWeight: FontWeight.bold))),
         FlatButton(
             hoverColor: Colors.blueAccent,
             onPressed: () {
-              Navigator.of(context).pushNamed('/Station');
+              Navigator.of(context).pushReplacementNamed('/StationEN');
             },
-            child: Text("محطاتنا",
+            child: Text("Our Station",
                 style: TextStyle(
                     fontSize: 22, color: yellow, fontWeight: FontWeight.bold))),
         FlatButton(
             hoverColor: Colors.blueAccent,
             onPressed: () {
-              Navigator.of(context).pushNamed('/service');
+              Navigator.of(context).pushReplacementNamed('/serviceEN');
             },
-            child: Text("خدمتنا",
+            child: Text("Services",
                 style: TextStyle(
                     color: yellow, fontSize: 22, fontWeight: FontWeight.bold))),
         FlatButton(
             hoverColor: Colors.blueAccent,
             onPressed: () {
-              Navigator.of(context).pushNamed('/about');
+              Navigator.of(context).pushReplacementNamed('/aboutEN');
             },
-            child: Text("عن الشركة",
+            child: Text("About",
                 style: TextStyle(
                     color: yellow, fontSize: 22, fontWeight: FontWeight.bold))),
         FlatButton(
             hoverColor: Colors.blueAccent,
-            onPressed: () {Navigator.of(context).pushNamed('/home');},
-            child: Text("الرئيسية",
+            onPressed: () {Navigator.of(context).pushReplacementNamed('/HomeEn');},
+            child: Text("Home",
                 style: TextStyle(
                     color: yellow, fontWeight: FontWeight.bold, fontSize: 22))),
       ],
